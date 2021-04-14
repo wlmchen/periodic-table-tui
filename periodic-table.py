@@ -15,11 +15,18 @@ def find_element(name):
         for n in element[2]:
             if n.lower() == name.lower():
                 return element
+        if element[0].lower() == name.lower():
+            return element
     return None
 
 
 def navigate(stdscr):
     text = ""
+    not_found = False
+    draw_table(stdscr, 0, 0, elements)
+    stdscr.addstr(35, 1, "Search: ")
+    draw_highlighted_box(stdscr, position[0], position[1])
+    draw_details_box(stdscr, get_element(position[0], position[1]))
     while True:
         key = stdscr.getch()
         c = chr(key)
@@ -39,12 +46,23 @@ def navigate(stdscr):
             if len(text) <= 16:
                 text += c
         if key == curses.KEY_ENTER or key in [10, 13]:
-            print(find_element(text))
+            element = find_element(text)
+            if element is None:
+                not_found = True
+            if element is not None:
+                position[0], position[1] = element[1][0], element[1][1]
             text = ''
+        if key == curses.KEY_BACKSPACE:
+            text = text[:-1]
 
 
+        stdscr.erase()
+        if not_found is True:
+            stdscr.addstr(36, 1, "NOT FOUND", curses.color_pair(6))
+            not_found = False
         draw_table(stdscr, 0, 0, elements)
-        stdscr.addstr(21, 9, text)
+        stdscr.addstr(35, 1, "Search: ")
+        stdscr.addstr(35, 9, text)
         draw_highlighted_box(stdscr, position[0], position[1])
         draw_details_box(stdscr, get_element(position[0], position[1]))
 
@@ -68,9 +86,9 @@ def draw_highlighted_box(stdscr, y, x):
     stdscr.addstr(y+2, x-3, '╩═══╩', curses.color_pair(2))
 
 def draw_details_box(stdscr, element):
-    stdscr.addstr(3, 80, element[2][0])
+    stdscr.addstr(3, 82, element[2][0])
     for line in range(0, len(box)):
-        stdscr.addstr(line, 80, box[line])
+        stdscr.addstr(line, 80, box[line], curses.color_pair(5))
 
 
 def curses_init(stdscr):
