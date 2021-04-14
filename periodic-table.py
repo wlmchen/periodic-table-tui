@@ -101,6 +101,8 @@ def navigate(stdscr, min_h, min_w):
                 if len(text) <= 16:
                     text += c
             if key == curses.KEY_ENTER or key in [10, 13]:
+                if text.lower() == 'quit':
+                    return
                 element = find_element(text)
                 if element is None:
                     not_found = True
