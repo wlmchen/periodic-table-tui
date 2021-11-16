@@ -2,7 +2,7 @@
 
 A periodic table for the command line
 
-![Picture](/assets/demo.gif?raw=true)
+![Picture](https://raw.githubusercontent.com/pryme-svg/periodic-table-tui/master/assets/demo.gif)
 
 
 ### Installation
