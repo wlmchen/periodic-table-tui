@@ -235,7 +235,7 @@ class periodicTable(object):
                     if element is not None:
                         self.position[0], self.position[1] = element['coordinates'][0], element['coordinates'][1]
                     text = ''
-                if key == curses.KEY_BACKSPACE:
+                if key == curses.KEY_BACKSPACE or key == 127:
                     text = text[:-1]
 
 
