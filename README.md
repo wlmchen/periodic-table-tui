@@ -11,6 +11,10 @@ A periodic table for the command line
 pip install periodic-table-tui
 ```
 
-Run with `periodic_table_tui`
+### Running
 
-> On Windows you will need to install `windows-curses` using `pip install windows-curses`
+If installed through `pip`, run with `periodic_table_tui`
+
+Otherwise if you have cloned the repository, execute the `periodic_table.py` file located in `/periodic_table_tui`
+
+> On Windows it is necessary to install `windows-curses` using `pip install windows-curses`
