@@ -339,11 +339,14 @@ class PeriodicTable(object):
         self.navigate(stdscr, min_h, min_w)
 
 if __name__ == "__main__":
+    import json
+    import os
     try:
-        import json
-        with open('elements.json', 'r') as f:
-            ptable = PeriodicTable(json.load(f))
+        with open(os.path.join(os.path.dirname(__file__), 'elements.json'), 'r') as f:
+            elements = json.load(f)
+        ptable = PeriodicTable(elements)
         curses.wrapper(ptable.main)
-    except Exception as e:
-        print(e)
+    except FileNotFoundError as e:
+        print(f"Could not open elements file: {e}")
+
 
