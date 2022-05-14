@@ -337,3 +337,13 @@ class PeriodicTable(object):
         self.check_term_minsize(stdscr, min_h, min_w)
 
         self.navigate(stdscr, min_h, min_w)
+
+if __name__ == "__main__":
+    try:
+        import json
+        with open('elements.json', 'r') as f:
+            ptable = PeriodicTable(json.load(f))
+        curses.wrapper(ptable.main)
+    except Exception as e:
+        print(e)
+
