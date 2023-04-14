@@ -286,7 +286,7 @@ class PeriodicTable(object):
         stdscr.addstr(y+3, x, 'Protons: ' + str(element['protons']))
         stdscr.addstr(y+4, x, 'Electrons: ' + str(element['electrons']))
         stdscr.addstr(y+5, x, 'State: ' + element['state'] + ' ' + emoji)
-        stdscr.addstr(y+6, x, 'Atomic Radius: ' + element['radius'] + ('' if element['radius']=='' else 'pm'))
+        stdscr.addstr(y+6, x, 'Atomic Radius: ' + element['radius'] + ('' if element['radius']=='' else 'A'))
         try:
             stdscr.addstr(y+7, x, 'Density: ' + str(float(element['density'])))
         except:
